@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8"/>
+    <title>SOFTDRINK</title>
+    <style type="text/css">
+      code a{text-decoration:none;}
+      h1{display:inline-block;font-size: 28pt;margin-bottom:0;}
+      code{font-family: Consolas, Inconsolata, monospace;}
+      h4{display: inline-block;margin:0;padding:0;}
+      #symbol-index ul{list-style: none;}
+      .package li{margin-bottom: 20px;}
+      .package pre{margin: 0 0 0 10px; white-space: pre-wrap;}
+      .package .nicknames{font-size: 12pt; font-weight: normal;}
+      table{margin: 20px;}
+      td{padding-bottom: 10px;}
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>softdrink</h1>
+      <span>0.1.0</span>
+      <p>Tools to inline or extract CSS into/from HTML.</p>
+    </header>
+    <div id="content">
+      <article>
+        <c:documentate>
+          <span><h2>About Softdrink</h2>
+
+<p>Softdrink is a small toolkit to extract CSS from HTML or inline it. Softdrink relies on <a href="http://shinmera.github.io/lquery/">lQuery</a> and <a href="http://shinmera.github.io/LASS/">LASS</a>.</p>
+
+<h2>How To</h2>
+
+<p>Extracting style information happens with <code><a href="#SOFTDRINK:SLURP">slurp</a></code>.</p>
+
+<pre><code>(<a href="#SOFTDRINK:SLURP">softdrink:slurp</a> &quot;&lt;div&gt;&lt;foo/&gt;&lt;foo id=\&quot;bla\&quot; style=\&quot;bar:baz;bluh: bbab\&quot; /&gt;&lt;/div&gt;&quot;)
+</code></pre>
+
+<p>Injecting CSS back in happens with <code><a href="#SOFTDRINK:MIX">mix</a></code>. You can then prettify the output with <code><a href="#SOFTDRINK:POUR">pour</a></code>.</p>
+
+<pre><code>(<a href="#SOFTDRINK:POUR">softdrink:pour</a> (<a href="#SOFTDRINK:MIX">softdrink:mix</a> &quot;&lt;foo&gt;&lt;p/&gt;&lt;/foo&gt;&quot; '(p :text-decoration underline)))
+</code></pre>
+
+<p>Softdrink includes support for the LASS item-types <code>:BLOCK</code> and <code>:PROPERTY</code>. Any other type needs to be added with <code><a href="#SOFTDRINK:DEFINE-INLINER">DEFINE-INLINER</a></code> or <code><a href="#SOFTDRINK:DEFINE-MANIPULATOR">DEFINE-MANIPULATOR</a></code>.</p>
+
+<h2>See Also</h2>
+
+<ul>
+<li><a href="http://shinmera.github.io/lquery/">lQuery</a>, used to easily traverse and manipulate the DOM</li>
+<li><a href="http://shinmera.github.io/LASS/">LASS</a>, to process and markup CSS in a more Lispy manner.</li>
+<li><a href="http://shinmera.github.io/plump/">Plump</a>, to parse and serialize X(HT)ML.</li>
+</ul>
+</span>
+        </c:documentate>
+      </article>
+      <article>
+        <h2>Copyright</h2>
+        <span>softdrink</span> is licensed under the <span><a href="https://tldrlegal.com/search?q=Artistic">Artistic</a></span> license and ©<span>2014</span> <span>Nicolas Hafner &lt;shinmera@tymoon.eu&gt;</span>. This library can be obtained on <a href="https://github.com/Shinmera/softdrink">https://github.com/Shinmera/softdrink</a>.
+      </article>
+      <article id="symbol-index">
+        <h2>Package Index</h2>
+        <ul><li class="package">
+            <h3>
+              <a name="SOFTDRINK" href="#SOFTDRINK">SOFTDRINK</a>
+              <span class="nicknames">(ORG.TYMOONNEXT.SOFTDRINK)</span>
+            </h3>
+            <ul><li>
+                <a name="SOFTDRINK:EXTRACT-SHEET"/>
+                <article>
+                  <header>
+                    <span>FUNCTION</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:EXTRACT-SHEET">EXTRACT-SHEET</a></h4>
+                      <span/>
+                      <span>(ROOT &amp;KEY MODIFY)</span>
+                    </code>
+                  </header>
+                  <pre>Extract style elements from ROOT into a LASS sheet.
+
+If MODIFY is non-NIL the STYLE attributes are removed.
+
+Returns two values: the LASS sheet and the ROOT.</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:INLINE-BLOCK"/>
+                <article>
+                  <header>
+                    <span>FUNCTION</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:INLINE-BLOCK">INLINE-BLOCK</a></h4>
+                      <span/>
+                      <span>(ROOT BLOCK)</span>
+                    </code>
+                  </header>
+                  <pre>Inlines the given LASS block into the ROOT node.
+Returns the ROOT.</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:INLINE-SHEET"/>
+                <article>
+                  <header>
+                    <span>FUNCTION</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:INLINE-SHEET">INLINE-SHEET</a></h4>
+                      <span/>
+                      <span>(LASS-SHEET ROOT)</span>
+                    </code>
+                  </header>
+                  <pre>Inlines the given LASS-SHEET into the ROOT node.
+Returns the ROOT.</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:INLINER"/>
+                <article>
+                  <header>
+                    <span>FUNCTION</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:INLINER">INLINER</a></h4>
+                      <span/>
+                      <span>(TYPE)</span>
+                    </code>
+                  </header>
+                  <pre>Returns a function to use as an inliner. The TYPE is automatically converted to a keyword.
+If no fitting function can be found, a noop-function is returned.</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:MANIPULATE"/>
+                <article>
+                  <header>
+                    <span>FUNCTION</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:MANIPULATE">MANIPULATE</a></h4>
+                      <span/>
+                      <span>(NODE ITEM)</span>
+                    </code>
+                  </header>
+                  <pre>Manipulate the NODE with the given ITEM.
+Returns the NODE.</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:MANIPULATOR"/>
+                <article>
+                  <header>
+                    <span>FUNCTION</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:MANIPULATOR">MANIPULATOR</a></h4>
+                      <span/>
+                      <span>(TYPE)</span>
+                    </code>
+                  </header>
+                  <pre>Returns a function to use as a manipulator. The TYPE is automatically converted to a keyword.
+If no fitting function can be found, a noop-function is returned.</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:MIX"/>
+                <article>
+                  <header>
+                    <span>FUNCTION</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:MIX">MIX</a></h4>
+                      <span/>
+                      <span>(SOURCE &amp;REST LASS-SHEET)</span>
+                    </code>
+                  </header>
+                  <pre>Mixes the LASS-SHEET definition into the SOURCE.
+Returns a NODE.
+
+Source can either be a NODE or something PARSEable.
+
+See PLUMP:PARSE, LASS:COMPILE-SHEET</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:POUR"/>
+                <article>
+                  <header>
+                    <span>FUNCTION</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:POUR">POUR</a></h4>
+                      <span/>
+                      <span>(NODE &amp;OPTIONAL (STREAM NIL))</span>
+                    </code>
+                  </header>
+                  <pre>Serializes NODE into STREAM.
+
+STREAM can either be an object of type STREAM,
+NIL (to string), or T (to *standard-output*).
+
+See PLUMP:SERIALIZE</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:SLURP"/>
+                <article>
+                  <header>
+                    <span>FUNCTION</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:SLURP">SLURP</a></h4>
+                      <span/>
+                      <span>(SOURCE &amp;KEY STREAM (PRETTY *PRETTY*) MODIFY)</span>
+                    </code>
+                  </header>
+                  <pre>Slurp all style information from SOURCE into STREAM.
+
+SOURCE --- can be either a NODE or something PLUMP:PARSEable.
+STREAM --- Where to output the CSS to. See LASS:WRITE-SHEET
+PRETTY --- Whether to prettify CSS or not. See LASS:WRITE-SHEET
+MODIFY --- Whether to modify the root or not. See EXTRACT-SHEET
+
+Returns two values: The ourput of WRITE-SHEET and the ROOT.</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:DEFINE-INLINER"/>
+                <article>
+                  <header>
+                    <span>MACRO</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:DEFINE-INLINER">DEFINE-INLINER</a></h4>
+                      <span/>
+                      <span>(NAME (ROOT &amp;REST ARGS) &amp;BODY BODY)</span>
+                    </code>
+                  </header>
+                  <pre>Defines a new inliner.
+
+NAME --- The inliner's name, automatically converted to a keyword.
+ROOT --- Symbol bound to the root node to process.
+ARGS --- Lambda-list for the manipulator arguments.</pre>
+                </article>
+              </li><li>
+                <a name="SOFTDRINK:DEFINE-MANIPULATOR"/>
+                <article>
+                  <header>
+                    <span>MACRO</span>
+                    <code>
+                      <h4><a href="#SOFTDRINK:DEFINE-MANIPULATOR">DEFINE-MANIPULATOR</a></h4>
+                      <span/>
+                      <span>(NAME (ELEMENT &amp;REST ARGS) &amp;BODY BODY)</span>
+                    </code>
+                  </header>
+                  <pre>Defines a new manipulator.
+
+NAME    --- The manipulator's name, automatically converted to a keyword.
+ELEMENT --- Symbol bound to the element to process.
+ARGS    --- Lambda-list for the manipulator arguments.</pre>
+                </article>
+              </li></ul>
+          </li></ul>
+      </article>
+    </div>
+  </body>
+</html>
