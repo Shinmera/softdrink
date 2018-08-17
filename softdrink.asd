@@ -11,7 +11,9 @@
   :author "Nicolas Hafner <shinmera@tymoon.eu>"
   :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
   :description "Tools to inline or extract CSS into/from HTML."
-  :homepage "https://github.com/Shinmera/softdrink"
+  :homepage "https://Shinmera.github.io/softdrink/"
+  :bug-tracker "https://github.com/Shinmera/softdrink/issues"
+  :source-control (:git "https://github.com/Shinmera/softdrink.git")
   :serial T
   :components ((:file "package")
                (:file "toolkit")
