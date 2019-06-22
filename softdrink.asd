@@ -7,7 +7,7 @@
 (asdf:defsystem softdrink
   :name "Softdrink"
   :version "0.1.0"
-  :license "Artistic"
+  :license "zlib"
   :author "Nicolas Hafner <shinmera@tymoon.eu>"
   :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
   :description "Tools to inline or extract CSS into/from HTML."
