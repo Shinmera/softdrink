@@ -71,10 +71,12 @@ Returns the ROOT."
   ($ element (css property (format NIL "~{~a~^ ~}" args))))
 
 (define-inliner block (root selectors &rest items)
-  (loop for selector in selectors
+  (loop for selector in (loop for constraint in (rest selectors)
+                              collect (with-output-to-string (out)
+                                        (lass:write-sheet-object :constraint (rest constraint) out)))
         do (loop for item in items
                  do ($ root (inline selector)
-                      (each #'(lambda (node) (manipulate node item)))))))
+                      (each (lambda (node) (manipulate node item)))))))
 
 (defun inline-sheet (lass-sheet root)
   "Inlines the given LASS-SHEET into the ROOT node.

@@ -40,12 +40,12 @@ Returns two values: the LASS sheet and the ROOT."
   (values
    (coerce
     ($ root "[style]"
-      (map #'(lambda (node)
-               (let ((style (attribute node "style")))
-                 (when modify (remove-attribute node "style"))
-                 `(:block (,(selector node))
-                    ,@(loop for property in (parse-style style)
-                            collect `(:property ,(car property) ,(cdr property))))))))
+      (map (lambda (node)
+             (let ((style (attribute node "style")))
+               (when modify (remove-attribute node "style"))
+               `(:block (:selector (:constraint :literal ,(selector node)))
+                  ,@(loop for property in (parse-style style)
+                          collect `(:property ,(car property) ,(cdr property))))))))
     'list)
    root))
 
