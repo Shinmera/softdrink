@@ -5,9 +5,9 @@
   :author "Yukari Hafner <shinmera@tymoon.eu>"
   :maintainer "Yukari Hafner <shinmera@tymoon.eu>"
   :description "Tools to inline or extract CSS into/from HTML."
-  :homepage "https://Shinmera.github.io/softdrink/"
-  :bug-tracker "https://github.com/Shinmera/softdrink/issues"
-  :source-control (:git "https://github.com/Shinmera/softdrink.git")
+  :homepage "https://shinmera.com/docs/softdrink/"
+  :bug-tracker "https://shinmera.com/project/softdrink/issues"
+  :source-control (:git "https://shinmera.com/project/softdrink.git")
   :serial T
   :components ((:file "package")
                (:file "toolkit")
