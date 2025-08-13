@@ -1,21 +1,4 @@
-About Softdrink
----------------
-Softdrink is a small toolkit to extract CSS from HTML or inline it. Softdrink relies on [lQuery](http://shinmera.github.io/lquery/) and [LASS](http://shinmera.github.io/LASS/).
+# This repository has [moved](https://shinmera.com/projects/softdrink)!
+Due to Microsoft's continued enshittification of the platform this repository has been moved to [Codeberg](https://shinmera.com/projects/softdrink) in August of 2025. It will not receive further updates or patches. **Issues and pull requests will not be looked at here either**, please submit your patches and issue tickets on Codeberg, or send them directly via good old email patches to [shirakumo@tymoon.eu](mailto:shirakumo@tymoon.eu).
 
-How To
-------
-Extracting style information happens with `slurp`.
-
-    (softdrink:slurp "<div><foo/><foo id=\"bla\" style=\"bar:baz;bluh: bbab\" /></div>")
-
-Injecting CSS back in happens with `mix`. You can then prettify the output with `pour`.
-
-    (softdrink:pour (softdrink:mix "<foo><p/></foo>" '(p :text-decoration underline)))
-
-Softdrink includes support for the LASS item-types `:BLOCK` and `:PROPERTY`. Any other type needs to be added with `DEFINE-INLINER` or `DEFINE-MANIPULATOR`.
-
-See Also
---------
-* [lQuery](http://shinmera.github.io/lquery/), used to easily traverse and manipulate the DOM
-* [LASS](http://shinmera.github.io/LASS/), to process and markup CSS in a more Lispy manner.
-* [Plump](http://shinmera.github.io/plump/), to parse and serialize X(HT)ML.
+Thanks.
